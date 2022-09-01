@@ -9,4 +9,7 @@ if [ "$EUID" -ne 0 ]; then
 fi
 #install the xorg-xclock package
 echo "Installing xorg-xclock..."
+#install the xorg-xclock package
 pacman -S xorg-xclock --noconfirm
+#display the output on a single line
+echo "Done installing xorg-xclock"
