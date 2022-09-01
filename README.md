@@ -1,0 +1,2 @@
+# Info
+This is used to re establish any and all things that will get wiped bny a steam os update. When ever a package that will be wiped on an update is added to the system, a new file in the pkg folder with the required steps should be made.
