@@ -16,7 +16,7 @@ echo "This will allow the system to write to the root partition."
 echo "This is required for the installation of packages."
 echo "Do you want to continue? (y/n)"
 read -r answer
-if [ "$answer" != "y"] || ["$answer" != "Y" ]; then
+if [ "$answer" != "y"]; then
     echo "Exiting..."
     exit
 fi
