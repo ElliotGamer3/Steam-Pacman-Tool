@@ -12,3 +12,4 @@ fi
 #init the gnome-keyring package
 echo "Installing gnome-keyring..."
 pacman -S gnome-keyring --noconfirm
+echo "Finished installing gnome-keyring"
