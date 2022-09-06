@@ -16,11 +16,17 @@ echo "Finished making temporary directory for the package..."
 echo "Downloading the package from https://aur.archlinux.org/visual-studio-code-bin.git..."
 git clone https://aur.archlinux.org/visual-studio-code-bin.git /tmp/vscode
 echo "Finished downloading the package from https://aur.archlinux.org/visual-studio-code-bin.git..."
+#check if fakeroot is installed
+if ! [ -x "$(command -v fakeroot)" ]; then
+    echo "Fakeroot is not installed, installing..."
+    pacman -S fakeroot --noconfirm
+    echo "Finished installing fakeroot..."
+fi
 #installing the package
-echo "Installing the package..."
+echo "Installing the visual-studio-code-bin package..."
 cd /tmp/vscode
-makepkg -si
-echo "Finished installing the package..."
+makepkg -si --noconfirm
+echo "Finished installing the visual-studio-code-bin package..."
 #removing the temporary directory
 echo "Removing the temporary directory..."
 rm -rf /tmp/vscode
