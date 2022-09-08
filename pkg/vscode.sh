@@ -10,11 +10,11 @@ fi
 #install the visual-studio-code-bin package
 #making temporary directory for the package
 echo "Making temporary directory for the package..."
-mkdir /tmp/vscode
+mkdir /tmp/vscodeInstall
 echo "Finished making temporary directory for the package..."
 #downloading the package to the temporary directory from https://aur.archlinux.org/visual-studio-code-bin.git
 echo "Downloading the package from https://aur.archlinux.org/visual-studio-code-bin.git..."
-git clone https://aur.archlinux.org/visual-studio-code-bin.git /tmp/vscode
+git clone https://aur.archlinux.org/visual-studio-code-bin.git /tmp/vscodeInstall
 echo "Finished downloading the package from https://aur.archlinux.org/visual-studio-code-bin.git..."
 #check if fakeroot is installed
 if ! [ -x "$(command -v fakeroot)" ]; then
@@ -24,12 +24,17 @@ if ! [ -x "$(command -v fakeroot)" ]; then
 fi
 #installing the package
 echo "Installing the visual-studio-code-bin package..."
-cd /tmp/vscode
-makepkg -si --noconfirm
+cd /tmp/
+chown -R nobody vscodeInstall/
+cd vscodeInstall
+#start a new shell as nobody and run the makepkg command
+su nobody -c "makepkg -si --noconfirm"
+#wait for the makepkg command to finish before continuing
+wait $!
 echo "Finished installing the visual-studio-code-bin package..."
 #removing the temporary directory
 echo "Removing the temporary directory..."
-rm -rf /tmp/vscode
+rm -rf /tmp/vscodeInstall
 echo "Finished removing the temporary directory..."
 #finished installing the visual-studio-code-bin package
 echo "Finished installing visual-studio-code-bin..."
