@@ -14,12 +14,14 @@ echo ":::WARNING:::"
 echo "This script will switch the system out of read-only mode."
 echo "This will allow the system to write to the root partition."
 echo "This is required for the installation of packages."
-echo "Do you want to continue? (y/n)"
-read -r answer
-if [ "$answer" != "y"]; then
-    echo "Exiting..."
-    exit
-fi
+while true; do
+    read -p "Do you want to continue? (y/n): " yn
+    case $yn in
+        [Yy]* ) break;;
+        [Nn]* ) echo "Exiting..."; exit;;
+        * ) echo "Plese answer y/n.";;
+    esac
+done
 
 #switch steamos out of read-only mode
 echo "Switching out of read-only mode..."
